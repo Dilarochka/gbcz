@@ -71,22 +71,31 @@
 
 				// scene objects
 				var loader = new THREE.FontLoader();
-				loader.load( 'fonts/Arial_Regular.json', function ( response ) {
 
-					font = response;
+loader.load( 'fonts/helvetiker_bold.typeface.json', function ( font ) {
 
-					var text = "СНЕГ";
-					var text_geometry = new THREE.TextGeometry( text, 
-							{
-								size: 24,
-								height: 5,
-								curveSegments: 4,
-								font: font,
-								style: "normal",
-								bevelEnabled: true,
-								bevelThickness: 2, 
-								bevelSize: 1, 
-							});
+    var textGeo = new THREE.TextGeometry( "My Text", {
+
+        font: font,
+
+        size: 200,
+        height: 50,
+        curveSegments: 12,
+
+        bevelThickness: 2,
+        bevelSize: 5,
+        bevelEnabled: true
+
+    } );
+
+    var textMaterial = new THREE.MeshPhongMaterial( { color: 0xff0000 } );
+
+    var mesh = new THREE.Mesh( textGeo, textMaterial );
+    mesh.position.set( x, y, z );
+
+    scene.add( mesh );
+
+} );
 					
 					var text_Material = new THREE.MeshPhongMaterial( { color: 0x62254a } );
 					var text3D = new THREE.Mesh( text_geometry, text_Material );
